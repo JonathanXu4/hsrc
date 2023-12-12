@@ -1,10 +1,8 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { Route, Switch, Link } from "react-router-dom";
 import Home from "./components/Home";
 import SimpleLineChart from "./components/LineChart";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
