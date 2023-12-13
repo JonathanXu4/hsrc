@@ -19,7 +19,7 @@ const RelicRates = () => {
       </p>
       <h2>substats</h2>
       <p>
-        10% HP/ATK/DEF
+        10% HP/ATK/DEF/HP%/ATK%/DEF%
         <br /> 8% EHR/RES/Break
         <br /> 6% CR/CD
         <br /> 4% SPD
