@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const RelicRates = () => {
   const [selectedInputA, setSelectedInputA] = useState("Head");
-  const [selectedInputB, setSelectedInputB] = useState("Hp");
+  const [selectedInputB, setSelectedInputB] = useState([]);
 
   const piece = ["Head", "Hands", "Body", "Feet", "Sphere", "Rope"];
   const optionsInputB = {
@@ -37,8 +37,7 @@ const RelicRates = () => {
   };
 
   useEffect(() => {
-    // Update optionsInputB based on the default value of inputA
-    setSelectedInputB([optionsInputB[selectedInputA][0]]);
+    // Do not reset selectedInputB here
   }, [selectedInputA, optionsInputB]);
 
   return (
@@ -75,7 +74,7 @@ const RelicRates = () => {
               <input
                 type="checkbox"
                 value={option}
-                checked={selectedInputB.includes(option)}
+                //checked={selectedInputB.includes(option)}
                 onChange={() => handleCheckboxChange(option)}
               />
               {option}
@@ -83,10 +82,17 @@ const RelicRates = () => {
           ))}
         </div>
 
-        {selectedInputA && selectedInputB && (
+        {selectedInputA && selectedInputB.length > 0 && (
           <div>
             <p>Selected Input A: {selectedInputA}</p>
-            <p>Selected Input B: {selectedInputB}</p>
+            <p>
+              Selected Input B:
+              {selectedInputB.map((option, index) => (
+                <span key={option}>
+                  {index > 0 && ", "} {option}
+                </span>
+              ))}
+            </p>
           </div>
         )}
       </div>
