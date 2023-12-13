@@ -25,6 +25,9 @@ const RootLayout = () => {
                 <Nav.Link as={Link} to="/help">
                   Help
                 </Nav.Link>
+                <Nav.Link as={Link} to="/rates">
+                  Relic Rates
+                </Nav.Link>
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/test">
                     Test
