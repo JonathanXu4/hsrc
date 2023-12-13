@@ -14,8 +14,8 @@ const RelicRates = () => {
       <p>
         Chests: 20% HP/ATK/DEF, 10% CR/CD/Healing/EHR
         <br /> Boots: 30% HP/ATK/DEF, 10% SPD
-        <br /> Sphere: 12% HP/ATK/DEF, 64% Element (/7 = 9.14 per)
-        <br /> Rope: 26% HP/ATK/DEF, 16% Break , 6% ER
+        <br /> Sphere: 12% HP/ATK/DEF, 64% Element(/7 = 9.14% each)
+        <br /> Rope: 26% HP/ATK/DEF, 16% Break, 6% ER
       </p>
       <h2>substats</h2>
       <p>
