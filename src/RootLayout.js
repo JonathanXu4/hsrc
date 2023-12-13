@@ -14,7 +14,7 @@ const RootLayout = () => {
               target="_blank"
               href="https://www.w3schools.com/html/html_links.asp"
             >
-              React-Bootstrap
+              Starrail DPS Calculator
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
