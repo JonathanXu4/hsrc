@@ -19,45 +19,69 @@ const RelicRates = () => {
     setSelectedInputA(value);
   };
 
-  const handleInputBChange = (value) => {
-    setSelectedInputB(value);
+  const handleCheckboxChange = (option) => {
+    const isChecked = selectedInputB.includes(option);
+
+    if (isChecked) {
+      // Remove the option if it is already selected
+      setSelectedInputB((prevSelectedInputB) =>
+        prevSelectedInputB.filter((selectedOption) => selectedOption !== option)
+      );
+    } else {
+      // Add the option if it is not selected
+      setSelectedInputB((prevSelectedInputB) => [
+        ...prevSelectedInputB,
+        option,
+      ]);
+    }
   };
 
   useEffect(() => {
-    setSelectedInputB(optionsInputB[selectedInputA][0]);
+    // Update optionsInputB based on the default value of inputA
+    setSelectedInputB([optionsInputB[selectedInputA][0]]);
   }, [selectedInputA, optionsInputB]);
 
   return (
     <div>
-      <div class="text">
-        <label>
-          piece:
-          <select
-            value={selectedInputA}
-            onChange={(e) => handleInputAChange(e.target.value)}
-          >
-            {piece.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-        {selectedInputA && (
+      <div
+        class="text"
+        style={{
+          margin: "20px",
+          padding: "20px",
+          border: "1px solid #ccc",
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <div style={{ marginRight: "20px" }}>
           <label>
-            main stat
+            piece:
             <select
-              value={selectedInputB}
-              onChange={(e) => handleInputBChange(e.target.value)}
+              value={selectedInputA}
+              onChange={(e) => handleInputAChange(e.target.value)}
             >
-              {optionsInputB[selectedInputA].map((option) => (
+              {piece.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
               ))}
             </select>
           </label>
-        )}
+        </div>
+        <div style={{ marginRight: "20px" }}>
+          <label>main stat:</label>
+          {optionsInputB[selectedInputA].map((option) => (
+            <div key={option}>
+              <input
+                type="checkbox"
+                value={option}
+                checked={selectedInputB.includes(option)}
+                onChange={() => handleCheckboxChange(option)}
+              />
+              {option}
+            </div>
+          ))}
+        </div>
 
         {selectedInputA && selectedInputB && (
           <div>
