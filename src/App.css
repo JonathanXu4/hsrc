@@ -141,8 +141,13 @@ aside,
   }
 }
 
+select,
 button {
   background-color: #2b3035;
   color: #d8d8d8;
   border-color: rgb(20, 53, 82);
+}
+
+input {
+  accent-color: rgb(20, 53, 82);
 }
