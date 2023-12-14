@@ -72,6 +72,19 @@ const RelicRates = () => {
     setSelectedInputB([]);
   };
 
+  const selectAllInputC = () => {
+    setSelectedSubstats(allSubstats);
+  };
+
+  const selectDpsC = () => {
+    setSelectedSubstats(["Atk", "Atk%", "CR", "CD", "Spd"]);
+  };
+
+  // Deselect all substats in Input C
+  const resetInputC = () => {
+    setSelectedSubstats([]);
+  };
+
   const weightMaps = {
     Head: {
       Hp: 100,
@@ -281,60 +294,63 @@ const RelicRates = () => {
       >
         <div
           style={{
-            display: "flex",
-            flexDirection: "row",
+            margin: "10px",
+            display: "flex", // Use flex container
+            flexDirection: "column", // Stack children vertically
+            justifyContent: "space-between",
           }}
         >
-          <div style={{ marginRight: "40px" }}>
-            <h5>Piece:</h5>
-            <select
-              value={selectedInputA}
-              onChange={(e) => handleInputAChange(e.target.value)}
-            >
-              {piece.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-              }}
-            >
-              <div style={{ marginRight: "40px" }}>
-                <h5>Main stat:</h5>
-                {optionsInputB[selectedInputA].map((option) => (
-                  <div key={option}>
-                    <input
-                      type="checkbox"
-                      style={{ marginRight: "10px" }}
-                      value={option}
-                      checked={selectedInputB.includes(option)}
-                      onChange={() => handleCheckboxChange(option)}
-                    />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <div style={{ marginRight: "50px" }}>
+              <h5>Piece:</h5>
+              <select
+                value={selectedInputA}
+                onChange={(e) => handleInputAChange(e.target.value)}
+              >
+                {piece.map((option) => (
+                  <option key={option} value={option}>
                     {option}
-                  </div>
+                  </option>
                 ))}
-              </div>
-              <div style={{ marginRight: "40px" }}>
-                <h5>Substats:</h5>
-                {allSubstats.map((substat) => (
-                  <div key={substat}>
-                    <input
-                      type="checkbox"
-                      style={{ marginRight: "10px" }}
-                      value={substat}
-                      checked={selectedSubstats.includes(substat)}
-                      onChange={() => handleSubstatCheckboxChange(substat)}
-                    />
-                    {substat}
-                  </div>
-                ))}
-              </div>
+              </select>
+            </div>
+            <div style={{ marginRight: "50px" }}>
+              <h5>Main stat:</h5>
+              {optionsInputB[selectedInputA].map((option) => (
+                <div key={option}>
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    value={option}
+                    checked={selectedInputB.includes(option)}
+                    onChange={() => handleCheckboxChange(option)}
+                  />
+                  {option}
+                </div>
+              ))}
+            </div>
+            <div style={{ marginRight: "50px" }}>
+              <h5>Substats:</h5>
+              {allSubstats.map((substat) => (
+                <div key={substat}>
+                  <input
+                    type="checkbox"
+                    style={{ marginRight: "10px" }}
+                    value={substat}
+                    checked={selectedSubstats.includes(substat)}
+                    onChange={() => handleSubstatCheckboxChange(substat)}
+                  />
+                  {substat}
+                </div>
+              ))}
+            </div>
+            <div style={{ marginRight: "50px" }}>
               {selectedInputA && selectedInputB.length > 0 && (
                 <div>
                   <p>Selected Input A: {selectedInputA}</p>
@@ -349,7 +365,16 @@ const RelicRates = () => {
                 </div>
               )}
             </div>
-            <div style={{ marginTop: "5px" }}>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+            }}
+          >
+            <div style={{ height: "10px", width: "120px" }}></div>
+            <div style={{ marginTop: "5px", marginRight: "40px" }}>
               <button
                 style={{ width: "100px", marginBottom: "2px" }}
                 onClick={selectAllInputB}
@@ -361,6 +386,26 @@ const RelicRates = () => {
                 Deselect all
               </button>
             </div>
+            <div style={{ marginTop: "5px" }}>
+              <button
+                style={{ width: "100px", marginBottom: "2px" }}
+                onClick={selectAllInputC}
+              >
+                Select all
+              </button>
+              <br />
+              <button
+                style={{ width: "100px", marginBottom: "2px" }}
+                onClick={resetInputC}
+              >
+                Deselect all
+              </button>
+              <br />
+              <button style={{ width: "100px" }} onClick={selectDpsC}>
+                Select dps
+              </button>
+            </div>
+            <div style={{ height: "10px", width: "100px" }}></div>
           </div>
         </div>
         <h5>Total Weight</h5>
