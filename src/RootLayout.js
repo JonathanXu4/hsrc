@@ -10,10 +10,7 @@ const RootLayout = () => {
       <header>
         <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand
-              target="_blank"
-              href="https://www.w3schools.com/html/html_links.asp"
-            >
+            <Navbar.Brand as={Link} to="/">
               Starrail DPS Calculator
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -22,12 +19,16 @@ const RootLayout = () => {
                 <Nav.Link as={Link} to="/">
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/help">
-                  Help
-                </Nav.Link>
                 <Nav.Link as={Link} to="/rates">
                   Relic Rates
                 </Nav.Link>
+                <Nav.Link as={Link} to="/calculator">
+                  Calculator
+                </Nav.Link>
+                <Nav.Link as={Link} to="/help">
+                  Help
+                </Nav.Link>
+
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/test">
                     Test
