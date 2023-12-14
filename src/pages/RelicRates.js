@@ -235,7 +235,7 @@ const RelicRates = () => {
   };
 
   const simulateProbability = () => {
-    const numSimulations = 10000; // You can adjust this based on your needs
+    const numSimulations = 100000; // You can adjust this based on your needs
     let results = "subs chance  runs  power\n";
     let substats = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -256,7 +256,7 @@ const RelicRates = () => {
     for (let i = 0; i < substats.length; i++) {
       substats[i] *= calculateTotalWeight() / 4 / numSimulations;
       results += i + 1 + ":   " + substats[i].toFixed(2) + "%  ";
-      substats[i] = 1 / substats[i];
+      substats[i] = 100 / substats[i];
       results += substats[i].toFixed(3) + "  ";
       results += (substats[i] * 30).toFixed(3) + "\n";
     }
