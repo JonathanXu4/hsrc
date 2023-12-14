@@ -16,7 +16,7 @@ const RelicRates = () => {
     Body: ["Hp%", "Atk%", "Def%", "CR", "CD", "Heal", "EHR"],
     Feet: ["Hp%", "Atk%", "Def%", "Spd"],
     Sphere: ["Hp%", "Atk%", "Def%", "Dmg"],
-    Rope: ["Hp%", "Atk%", "Def%", "Break", "EHR"],
+    Rope: ["Hp%", "Atk%", "Def%", "Break", "ERR"],
   };
 
   const handleInputAChange = (value) => {
@@ -105,7 +105,7 @@ const RelicRates = () => {
       "Atk%": 26,
       "Def%": 26,
       Break: 16,
-      EHR: 6,
+      ERR: 6,
     },
   };
 
@@ -255,6 +255,9 @@ const RelicRates = () => {
 
     for (let i = 0; i < substats.length; i++) {
       substats[i] *= calculateTotalWeight() / 4 / numSimulations;
+      if (selectedInputA === "Sphere" || selectedInputA === "Rope") {
+        substats[i] *= 2; // Multiply by 2 for Sphere or Rope
+      }
       results += i + 1 + ":   " + substats[i].toFixed(2) + "%  ";
       substats[i] = 100 / substats[i];
       results += substats[i].toFixed(3) + "  ";
@@ -379,7 +382,7 @@ const RelicRates = () => {
           Body: 20% HP/ATK/DEF, 10% CR/CD/Healing/EHR
           <br /> Feet: 30% HP/ATK/DEF, 10% SPD
           <br /> Sphere: 12% HP/ATK/DEF, 64% Element(/7 = 9.14% each)
-          <br /> Rope: 26% HP/ATK/DEF, 16% Break, 6% ER
+          <br /> Rope: 26% HP/ATK/DEF, 16% Break, 6% ERR
         </p>
         <h5>substats</h5>
         <p>
