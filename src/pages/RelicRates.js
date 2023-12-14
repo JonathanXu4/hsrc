@@ -17,6 +17,7 @@ const RelicRates = () => {
 
   const handleInputAChange = (value) => {
     setSelectedInputA(value);
+    setSelectedInputB([]);
   };
 
   const handleCheckboxChange = (option) => {
@@ -36,9 +37,17 @@ const RelicRates = () => {
     }
   };
 
-  useEffect(() => {
-    // Do not reset selectedInputB here
-  }, [selectedInputA, optionsInputB]);
+  useEffect(() => {}, [selectedInputA, optionsInputB]);
+
+  // select all
+  const selectAllInputB = () => {
+    setSelectedInputB(optionsInputB[selectedInputA]);
+  };
+
+  // deselect all
+  const resetInputB = () => {
+    setSelectedInputB([]);
+  };
 
   return (
     <div>
@@ -48,54 +57,84 @@ const RelicRates = () => {
           margin: "20px",
           padding: "20px",
           border: "1px solid #ccc",
-          display: "flex",
-          flexDirection: "row",
+          display: "flex", // Use flex container
+          flexDirection: "column", // Stack children vertically
         }}
       >
-        <div style={{ marginRight: "20px" }}>
-          <label>
-            piece:
-            <select
-              value={selectedInputA}
-              onChange={(e) => handleInputAChange(e.target.value)}
-            >
-              {piece.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div style={{ marginRight: "20px" }}>
-          <label>main stat:</label>
-          {optionsInputB[selectedInputA].map((option) => (
-            <div key={option}>
-              <input
-                type="checkbox"
-                value={option}
-                //checked={selectedInputB.includes(option)}
-                onChange={() => handleCheckboxChange(option)}
-              />
-              {option}
-            </div>
-          ))}
-        </div>
-
-        {selectedInputA && selectedInputB.length > 0 && (
-          <div>
-            <p>Selected Input A: {selectedInputA}</p>
-            <p>
-              Selected Input B:
-              {selectedInputB.map((option, index) => (
-                <span key={option}>
-                  {index > 0 && ", "} {option}
-                </span>
-              ))}
-            </p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div style={{ marginRight: "40px" }}>
+            <label>
+              Piece:
+              <select
+                value={selectedInputA}
+                onChange={(e) => handleInputAChange(e.target.value)}
+              >
+                {piece.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
-        )}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <div style={{ marginRight: "40px" }}>
+                <label>Main stat:</label>
+                {optionsInputB[selectedInputA].map((option) => (
+                  <div key={option}>
+                    <input
+                      type="checkbox"
+                      style={{ marginRight: "10px" }}
+                      value={option}
+                      checked={selectedInputB.includes(option)}
+                      onChange={() => handleCheckboxChange(option)}
+                    />
+                    {option}
+                  </div>
+                ))}
+              </div>
+
+              {selectedInputA && selectedInputB.length > 0 && (
+                <div>
+                  <p>Selected Input A: {selectedInputA}</p>
+                  <p>
+                    Selected Input B:
+                    {selectedInputB.map((option, index) => (
+                      <span key={option}>
+                        {index > 0 && ", "} {option}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              )}
+            </div>
+            <div style={{ marginTop: "5px" }}>
+              <button
+                style={{ width: "100px", marginBottom: "2px" }}
+                onClick={selectAllInputB}
+              >
+                Select all
+              </button>
+              <br />
+              <button style={{ width: "100px" }} onClick={resetInputB}>
+                Deselect all
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="text">
         <h4>relic stats</h4>
         <h5>droprates</h5>
