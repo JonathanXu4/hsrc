@@ -235,7 +235,7 @@ const RelicRates = () => {
   };
 
   const simulateProbability = () => {
-    const numSimulations = 100000; // You can adjust this based on your needs
+    const numSimulations = 10000; // You can adjust this based on your needs
     let results = "subs chance  runs  power\n";
     let substats = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
